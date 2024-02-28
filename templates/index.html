@@ -2,10 +2,124 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <title>GradeMaster: Calculate Your Grades with Qudurat Scores</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
      crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        h1, p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #2b2b2b;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            width: 60%;
+        }
+
+        label {
+            display: block;
+            background-color: #4f6fff;
+            color: #333;
+            text-align: center;
+            margin-bottom: 5px;
+            border: 1px solid #000000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 0 auto 5px auto;
+            width: 25%;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        label:hover {
+            background-color: #ddd;
+            border-color: #bbb;
+        }
+
+        .custom-checkbox .checkmark {
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-right: 10px; /* Add some space between the checkbox and the label */
+}
+
+
+        .degree-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .degree-options div {
+            display: flex;
+            align-items: center;
+            margin: 0 10px; /* Add horizontal margin */
+        }
+
+        .degree-options label {
+            margin-right: 10px;
+        }
+
+        input[type="text"], input[type="checkbox"] {
+            display: block;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid #ddd; /* Light grey border */
+            width: 40%;
+            background-color: #f0f0f0; /* Light grey background */
+            color: #333; /* Dark grey text */
+            transition: all 0.3s ease; /* Smooth transition for focus effect */
+        }
+
+        /* Change the border and background color when focusing on the input */
+        input[type="text"]:focus, input[type="checkbox"]:focus {
+            border-color: #bbb;
+            background-color: #eee;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none; /* Remove the default border */
+            background-color: #2196F3; /* Blue background */
+            color: #fff; /* White text */
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Change the background color when hovering over the submit button */
+        input[type="submit"]:hover {
+            background-color: #1E88E5; /* Darker blue */
+        }
+
+        .custom_size_label {
+            width: 70%;
+        }
+    </style>
 </head>
 
 <body>
