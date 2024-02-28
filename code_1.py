@@ -16,8 +16,8 @@ def calculate_score():
         try:
             grades = request.form.get('grades').split(' ')
             grades = [float(i) for i in grades]
-            if not all(0 <= g <= 4 for g in grades):
-                return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 4.")
+            if not all(0 <= g <= 5 for g in grades):
+                return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 5.")
 
             gpa = sum(grades) / len(grades) / 4 * 100
 
@@ -39,9 +39,13 @@ def calculate_score():
 
             if degree == "engineering":
                 gpa_on_4_point_scale = (gpa / 100) * 4
+                if gpa > 100:
+                    gpa = 100
                 final_score = gpa * 0.65 + math_qudurat * 0.2 + english_qudurat * 0.15
             elif degree == "medicine":
                 gpa_on_4_point_scale = (gpa / 100) * 4
+                if gpa > 100:
+                    gpa = 100
                 final_score = gpa * 0.75 + math_qudurat * 0.15 + english_qudurat * 0.1
 
             return render_template('result.html', final_score=round(final_score, 1), gpa=gpa_on_4_point_scale)
