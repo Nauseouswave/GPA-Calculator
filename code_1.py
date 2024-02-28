@@ -11,6 +11,7 @@ def calculate_gpa(total_grades):
     return final_gpa, percentage
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/<param>', methods=['GET', 'POST'])
 def calculate_score():
     if request.method == 'POST':
         try:
