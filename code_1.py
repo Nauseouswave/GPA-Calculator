@@ -33,20 +33,21 @@ def calculate_score():
                 if not 0 <= english_qudurat <= 100:
                     return render_template('error.html', error_message="Invalid English Qudurat score. Please enter a value between 0 and 100.")
 
-            degree = request.form.get('degree').lower()
-            if degree not in ["engineering", "medicine"]:
-                return render_template('error.html', error_message="Invalid degree. Please enter 'engineering' or 'medicine'.")
+            degree = request.form.get('degree')
+            if degree:
+                degree = degree.lower()
+                if degree not in ["engineering", "medicine"]:
+                    return render_template('error.html', error_message="Invalid degree. Please enter 'engineering' or 'medicine'.")
 
-            if degree == "engineering":
+            if degree == "engineering" and math_qudurat and english_qudurat:
                 gpa_on_4_point_scale = (gpa / 100) * 4
-                if gpa > 100:
-                    gpa = 100
                 final_score = gpa * 0.65 + math_qudurat * 0.2 + english_qudurat * 0.15
-            elif degree == "medicine":
+            elif degree == "medicine" and math_qudurat and english_qudurat:
                 gpa_on_4_point_scale = (gpa / 100) * 4
-                if gpa > 100:
-                    gpa = 100
                 final_score = gpa * 0.75 + math_qudurat * 0.15 + english_qudurat * 0.1
+            else:
+                final_score = ((sum(grades) / len(grades)) + 1) * 20
+                gpa_on_4_point_scale = (gpa / 100) * 4
 
             return render_template('result.html', final_score=round(final_score, 1), gpa=gpa_on_4_point_scale)
         except ValueError:
