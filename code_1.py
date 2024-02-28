@@ -19,8 +19,8 @@ def calculate_score():
             if not all(0 <= g <= 4 for g in grades):
                 return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 4.")
 
-            gpa = sum(grades) / len(grades)
- 
+            gpa = sum(grades) / len(grades) / 4 * 100
+
             math_qudurat = request.form.get('math_qudurat')
             if math_qudurat:
                 math_qudurat = float(math_qudurat)
@@ -38,11 +38,13 @@ def calculate_score():
                 return render_template('error.html', error_message="Invalid degree. Please enter 'engineering' or 'medicine'.")
 
             if degree == "engineering":
+                gpa_on_4_point_scale = (gpa / 100) * 4
                 final_score = gpa * 0.65 + math_qudurat * 0.2 + english_qudurat * 0.15
             elif degree == "medicine":
+                gpa_on_4_point_scale = (gpa / 100) * 4
                 final_score = gpa * 0.75 + math_qudurat * 0.15 + english_qudurat * 0.1
 
-            return render_template('result.html', final_score=round(final_score, 1), gpa=round(gpa, 2))
+            return render_template('result.html', final_score=round(final_score, 1), gpa=gpa_on_4_point_scale)
         except ValueError:
             return render_template('error.html', error_message="Invalid input. Please check your values and try again.")
 
