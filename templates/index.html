@@ -2,75 +2,36 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="style.css">
+    <title>GradeMaster: Calculate Your Grades with Qudurat Scores</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
      crossorigin="anonymous"></script>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #1a1a1a;
-            font-family: Arial, sans-serif;
-            color: #fff;
-            font-size: 20px;
-            /* Increased font size */
-        }
-
-        form {
-            background-color: #2b2b2b;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-            width: 60%;
-        }
-
-        label {
-            display: block;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"] {
-            display: block;
-            margin: 10px auto;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #444;
-            width: 80%;
-            background-color: #2b2b2b;
-            color: #fff;
-        }
-
-        input[type="submit"] {
-            display: block;
-            margin: 10px auto;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            text-decoration: none;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 
 <body>
+    <h1>GradeMaster: Calculate Your Grades with Qudurat Scores</h1>
+    <p>Enter your grades and Qudurat scores to calculate your final high school GPA and final score with Qudurat.</p>
     <form method="POST" action="/">
         <label for="grades">Grades</label>
-        <input type="text" name="grades" id="grades" placeholder="Enter GPA's of 9, 10, 11, 12 (e.g. 4, 4, 3.9, 3.9)">
+        <input type="text" name="grades" id="grades" placeholder="Enter GPA's of 9, 10, 11, 12 (e.g. 4 4 3.9 3.9)">
         <label for="math_qudurat">Math Qudurat</label>
         <input type="text" name="math_qudurat" id="math_qudurat" placeholder="Enter Math Qudurat score (0-100)">
         <label for="english_qudurat">English Qudurat</label>
-        <input type="text" name="english_qudurat" id="english_qudurat"
-            placeholder="Enter English Qudurat score (0-100)">
-        <label for="degree">Degree</label>
-        <input type="text" name="degree" id="degree" placeholder="Enter degree (engineering or medicine)">
+        <input type="text" name="english_qudurat" id="english_qudurat" placeholder="Enter English Qudurat score (0-100)">
+        
+        <label>Degree</label>
+        <div class="degree-options">
+            <div class="custom-checkbox">
+                <label class="custom_size_label" for="engineering">Engineering</label>
+                <input type="checkbox" class="checkmark" id="engineering" name="degree" value="Engineering">
+            </div>
+
+            <div class="custom-checkbox">
+                <label class="custom_size_label" for="medicine">Medicine</label>
+                <input type="checkbox" class="checkmark" id="medicine" name="degree" value="Medicine">
+            </div>
+        </div>
+
         <input type="submit" value="Submit">
     </form>
 </body>
