@@ -111,3 +111,23 @@ input[type="submit"]:hover {
 .custom_size_label {
     width: 70%;
 }
+
+a {
+    display: block;
+    background-color: #4f6fff;
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 5px;
+    border: 1px solid #000000;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin: 0 auto 5px auto;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background-color: #ddd;
+    border-color: #bbb;
+}
