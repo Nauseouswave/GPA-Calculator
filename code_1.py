@@ -49,7 +49,7 @@ def calculate_score():
                 final_score = ((sum(grades) / len(grades)) + 1) * 20
                 gpa_on_4_point_scale = (gpa / 100) * 4
 
-            return render_template('result.html', final_score=round(final_score, 1), gpa=gpa_on_4_point_scale)
+            return render_template('result.html', final_score=round(final_score, 1), gpa=round(gpa_on_4_point_scale, 2))
         except ValueError:
             return render_template('error.html', error_message="Invalid input. Please check your values and try again.")
 
