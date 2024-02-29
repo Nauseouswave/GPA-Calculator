@@ -94,6 +94,9 @@ def private_tool():
                 final_score = ((sum(grades) / len(grades)) + 1) * 20
                 gpa_on_4_point_scale = (gpa / 100) * 4
             
+            if final_score > 100:
+                final_score = 100
+
             gpa = 'Your final high school GPA is: ' + str(round(gpa_on_4_point_scale, 2))
 
             return render_template('result.html', final_score=round(final_score, 1), gpa=gpa)

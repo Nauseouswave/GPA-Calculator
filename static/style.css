@@ -10,7 +10,8 @@ body {
     font-size: 20px;
 }
 
-h1, p {
+h1,
+p {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -51,7 +52,8 @@ label:hover {
     width: 25px;
     background-color: #eee;
     border-radius: 4px;
-    margin-right: 10px; /* Add some space between the checkbox and the label */
+    margin-right: 10px;
+    /* Add some space between the checkbox and the label */
 }
 
 
@@ -65,27 +67,34 @@ label:hover {
 .degree-options div {
     display: flex;
     align-items: center;
-    margin: 0 10px; /* Add horizontal margin */
+    margin: 0 10px;
+    /* Add horizontal margin */
 }
 
 .degree-options label {
     margin-right: 10px;
 }
 
-input[type="text"], input[type="checkbox"] {
+input[type="text"],
+input[type="checkbox"] {
     display: block;
     margin: 10px auto;
     padding: 15px;
     border-radius: 20px;
-    border: 1px solid #ddd; /* Light grey border */
+    border: 1px solid #ddd;
+    /* Light grey border */
     width: 40%;
-    background-color: #f0f0f0; /* Light grey background */
-    color: #333; /* Dark grey text */
-    transition: all 0.3s ease; /* Smooth transition for focus effect */
+    background-color: #f0f0f0;
+    /* Light grey background */
+    color: #333;
+    /* Dark grey text */
+    transition: all 0.3s ease;
+    /* Smooth transition for focus effect */
 }
 
 /* Change the border and background color when focusing on the input */
-input[type="text"]:focus, input[type="checkbox"]:focus {
+input[type="text"]:focus,
+input[type="checkbox"]:focus {
     border-color: #bbb;
     background-color: #eee;
 }
@@ -95,17 +104,22 @@ input[type="submit"] {
     margin: 20px auto;
     padding: 10px 20px;
     border-radius: 4px;
-    border: none; /* Remove the default border */
-    background-color: #2196F3; /* Blue background */
-    color: #fff; /* White text */
+    border: none;
+    /* Remove the default border */
+    background-color: #2196F3;
+    /* Blue background */
+    color: #fff;
+    /* White text */
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
 }
 
 /* Change the background color when hovering over the submit button */
 input[type="submit"]:hover {
-    background-color: #1E88E5; /* Darker blue */
+    background-color: #1E88E5;
+    /* Darker blue */
 }
 
 .custom_size_label {
@@ -130,4 +144,9 @@ a {
 a:hover {
     background-color: #ddd;
     border-color: #bbb;
+}
+
+.note {
+    text-align: center;
+    font-size: 0.8em;
 }
