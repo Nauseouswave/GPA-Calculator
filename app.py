@@ -34,11 +34,7 @@ def public_tool():
                 if not 0 <= english_qudurat <= 100:
                     return render_template('error.html', error_message="Invalid English Qudurat score. Please enter a value between 0 and 100.")
 
-            degree = request.form.get('degree')
-            if degree:
-                degree = degree.lower()
-                if degree not in ["engineering", "medicine"]:
-                    return render_template('error.html', error_message="Invalid degree. Please enter 'engineering' or 'medicine'.")
+            degree = request.form.get('degree').lower()
 
             if degree == "engineering" and math_qudurat and english_qudurat:
                 final_score = sum_grades * 0.65 + math_qudurat * 0.2 + english_qudurat * 0.15
