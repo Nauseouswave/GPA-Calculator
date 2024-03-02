@@ -34,7 +34,12 @@ def public_tool():
                 if not 0 <= english_qudurat <= 100:
                     return render_template('error.html', error_message="Invalid English Qudurat score. Please enter a value between 0 and 100.")
 
-            degree = request.form.get('degree').lower()
+            degree = request.form.get('degree')
+
+            if not degree:
+                return render_template('error.html', error_message="You need to select a degree.")
+            
+            degree = degree.lower()
 
             if degree == "engineering" and math_qudurat and english_qudurat:
                 final_score = sum_grades * 0.65 + math_qudurat * 0.2 + english_qudurat * 0.15
@@ -75,10 +80,12 @@ def private_tool():
                     return render_template('error.html', error_message="Invalid English Qudurat score. Please enter a value between 0 and 100.")
 
             degree = request.form.get('degree')
-            if degree:
-                degree = degree.lower()
-                if degree not in ["engineering", "medicine"]:
-                    return render_template('error.html', error_message="Invalid degree. Please enter 'engineering' or 'medicine'.")
+
+            if not degree:
+                return render_template('error.html', error_message="You need to select a degree.")
+            
+            degree = degree.lower()
+
 
             if degree == "engineering" and math_qudurat and english_qudurat:
                 gpa_on_4_point_scale = (gpa / 100) * 4
