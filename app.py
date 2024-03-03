@@ -2,6 +2,13 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__, static_folder='static')
 
+def format_number(num):
+    if num % 1 == 0:
+        return int(num)
+    else:
+        return num
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -81,7 +88,7 @@ def private_tool():
             if not all(0 <= g <= 5 for g in grades):
                 return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 5.")
 
-            gpa = sum(grades) / len(grades) / 4 * 100
+            gpa = (sum(grades) / len(grades) + 1) * 20
 
             math_qudurat = request.form.get('math_qudurat')
             if math_qudurat:
@@ -98,8 +105,7 @@ def private_tool():
             degree = request.form.get('degree')
 
             if not degree:
-                return render_template('error.html', error_message="You need to select a degree.")
-            
+                final_score = gpa          
             degree = degree.lower()
 
 
@@ -118,10 +124,12 @@ def private_tool():
             else:
                 final_score = gpa
             
-            gpa_on_4_point_scale = (gpa / 100) * 4
+            gpa_on_4_point_scale = (gpa / 20) - 1 
             
             if final_score > 100:
                 final_score = 100
+
+            final_score = format_number(final_score)
 
             gpa = 'Your final high school GPA is: ' + str(round(gpa_on_4_point_scale, 2))
 
