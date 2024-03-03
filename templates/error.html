@@ -4,6 +4,7 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/style.css">
     <style>
         body {
             display: flex;
@@ -39,12 +40,18 @@
             background-color: #0056b3;
         }
     </style>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </head>
 
 <body>
     <div class="error">
         <h2>{{ error_message }}</h2>
-        <a href="/">Go back</a>
+        <button onclick="goBack()">Go Back</button>
     </div>
 </body>
 

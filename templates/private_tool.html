@@ -31,24 +31,12 @@
         <input type="number" name="english_qudurat" id="english_qudurat" step="any"
             placeholder="English Qudurat score (0-100)">
 
-        <label>Degree</label>
-        <div class="degree-options">
-
-            <div class="custom-checkbox">
-                <label class="custom_size_label" for="none">None</label>
-                <input type="radio" class="checkmark" id="none" name="degree" value="none" checked>
-            </div>
-
-            <div class="custom-checkbox">
-                <label class="custom_size_label" for="engineering">Engineering</label>
-                <input type="radio" class="checkmark" id="engineering" name="degree" value="Engineering">
-            </div>
-
-            <div class="custom-checkbox">
-                <label class="custom_size_label" for="medicine">Medicine</label>
-                <input type="radio" class="checkmark" id="medicine" name="degree" value="Medicine">
-            </div>
-        </div>
+        <label for="degree">Degree:</label>
+        <select id="degree" name="degree">
+            <option value="">None</option>
+            <option value="engineering">Engineering</option>
+            <option value="medicine">Medicine</option>
+        </select>
 
         <input type="submit" value="Submit">
     </form>

@@ -4,6 +4,7 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/style.css">
     <style>
         body {
             display: flex;
@@ -23,12 +24,18 @@
             text-align: center;
         }
     </style>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </head>
 
 <body>
     <div class="result">
         <h2>{{ gpa }}</h2>
         <h2>Your final score for MOHE is: {{ final_score }}%</h2>
+        <button onclick="goBack()">Go Back</button>
     </div>
 </body>
 
