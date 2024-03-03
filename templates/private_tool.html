@@ -6,30 +6,47 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>GradeMaster: Calculate Your Grades with Qudurat Scores</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <h1>GradeMaster: Calculate Your Grades with Qudurat Scores</h1>
     <p>Enter your grades and Qudurat scores to calculate your final high school GPA and final score with Qudurat.</p>
     <form method="POST" action="{{ url_for('private_tool') }}">
-        <label for="grades">Grades</label>
-        <input type="text" name="grades" id="grades" placeholder="Enter GPA's of 9, 10, 11, 12 (e.g. 4 4 3.9 3.9)">
+        <label for="grade1">Grade 9:</label>
+        <input type="number" id="grade1" name="grade1" min="0" max="5" step="any" placeholder="e.g. 3.54" required>
+
+        <label for="grade2">Grade 10:</label>
+        <input type="number" id="grade2" name="grade2" min="0" max="5" step="any" placeholder="e.g. 3.6" required>
+
+        <label for="grade3">Grade 11:</label>
+        <input type="number" id="grade3" name="grade3" min="0" max="5" step="any" placeholder="e.g. 3.7" required>
+
+        <label for="grade4">Grade 12:</label>
+        <input type="number" id="grade4" name="grade4" min="0" max="5" step="any" placeholder="e.g. 4.14" required>
+
         <label for="math_qudurat">Math Qudurat</label>
-        <input type="text" name="math_qudurat" id="math_qudurat" placeholder="Enter Math Qudurat score (0-100)">
+        <input type="number" name="math_qudurat" id="math_qudurat" step="any" placeholder="Math Qudurat score (0-100)">
         <label for="english_qudurat">English Qudurat</label>
-        <input type="text" name="english_qudurat" id="english_qudurat" placeholder="Enter English Qudurat score (0-100)">
-        
+        <input type="number" name="english_qudurat" id="english_qudurat" step="any"
+            placeholder="English Qudurat score (0-100)">
+
         <label>Degree</label>
         <div class="degree-options">
+
+            <div class="custom-checkbox">
+                <label class="custom_size_label" for="none">None</label>
+                <input type="radio" class="checkmark" id="none" name="degree" value="none" checked>
+            </div>
+
             <div class="custom-checkbox">
                 <label class="custom_size_label" for="engineering">Engineering</label>
-                <input type="checkbox" class="checkmark" id="engineering" name="degree" value="Engineering">
+                <input type="radio" class="checkmark" id="engineering" name="degree" value="Engineering">
             </div>
 
             <div class="custom-checkbox">
                 <label class="custom_size_label" for="medicine">Medicine</label>
-                <input type="checkbox" class="checkmark" id="medicine" name="degree" value="Medicine">
+                <input type="radio" class="checkmark" id="medicine" name="degree" value="Medicine">
             </div>
         </div>
 

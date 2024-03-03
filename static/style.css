@@ -76,7 +76,7 @@ label:hover {
 }
 
 input[type="text"],
-input[type="checkbox"] {
+input[type="radio"] {
     display: block;
     margin: 10px auto;
     padding: 15px;
@@ -94,7 +94,7 @@ input[type="checkbox"] {
 
 /* Change the border and background color when focusing on the input */
 input[type="text"]:focus,
-input[type="checkbox"]:focus {
+input[type="radio"]:focus {
     border-color: #bbb;
     background-color: #eee;
 }
@@ -149,4 +149,19 @@ a:hover {
 .note {
     text-align: center;
     font-size: 0.8em;
+}
+
+input[type="number"] {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    height: 4%;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
 }

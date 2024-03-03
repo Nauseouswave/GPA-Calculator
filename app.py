@@ -10,8 +10,12 @@ def index():
 def public_tool():
     if request.method == 'POST':
         try:
-            grades = request.form.get('grades').split(' ')
-            grades = [float(i) for i in grades]
+            grade1 = float(request.form.get('grade1'))
+            grade2 = float(request.form.get('grade2'))
+            grade3 = float(request.form.get('grade3'))
+
+            grades = [grade1, grade2, grade3]
+
             if not all(0 <= g <= 100 for g in grades):
                 return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 100.")
 
@@ -60,8 +64,12 @@ def public_tool():
 def private_tool():
     if request.method == 'POST':
         try:
-            grades = request.form.get('grades').split(' ')
-            grades = [float(i) for i in grades]
+            grade1 = float(request.form.get('grade1'))
+            grade2 = float(request.form.get('grade2'))
+            grade3 = float(request.form.get('grade3'))
+            grade4 = float(request.form.get('grade4'))
+
+            grades = [grade1, grade2, grade3, grade4]
             if not all(0 <= g <= 5 for g in grades):
                 return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 5.")
 
