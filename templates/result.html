@@ -2,32 +2,21 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GradeMaster: Results</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="static/style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="static/style.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #1a1a1a;
-            font-family: Arial, sans-serif;
-            color: #fff;
-        }
 
-        .result {
-            background-color: #2b2b2b;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-    </style>
     <script>
         function goBack() {
             window.history.back();
         }
+
+        function goToMainPage() {
+            window.location.href = "/";
+}
     </script>
 </head>
 
@@ -35,7 +24,8 @@
     <div class="result">
         <h2>{{ gpa }}</h2>
         <h2>Your final score for MOHE is: {{ final_score }}%</h2>
-        <button onclick="goBack()">Go Back</button>
+        <button onclick="goBack()">Edit something?</button>
+        <button onclick="goToMainPage()">Main Page</button>
     </div>
 </body>
 

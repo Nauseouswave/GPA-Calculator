@@ -159,6 +159,7 @@ select, input[type="number"] {
     .boxed {
         width: 90%; /* Adjust as needed */
         padding: 20px; /* Adjust as needed */
+        margin-top: 150%;
     }
 
     label, button, a, input[type="number"], .select2-container, select {

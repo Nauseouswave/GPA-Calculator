@@ -2,14 +2,20 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/mobile-style.css">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>GradeMaster: U.S. School</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
         crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script src="static/main.js"></script>
 </head>
 
 <body>
+    <div class="boxed">
     <h1>GradeMaster: Calculate Your Grades with Qudurat Scores</h1>
     <p>Enter your grades and Qudurat scores to calculate your final high school GPA and final score with Qudurat.</p>
     <form method="POST" action="{{ url_for('private_tool') }}">
@@ -32,14 +38,17 @@
             placeholder="English Qudurat score (0-100)">
 
         <label for="degree">Degree:</label>
+        <div class="select-container">
         <select id="degree" name="degree">
             <option value="">None</option>
             <option value="engineering">Engineering</option>
             <option value="medicine">Medicine</option>
         </select>
+        </div>
 
         <input type="submit" value="Submit">
     </form>
+</div>
 </body>
 
 </html>

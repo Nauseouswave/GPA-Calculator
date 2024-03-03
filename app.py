@@ -103,15 +103,22 @@ def private_tool():
             degree = degree.lower()
 
 
-            if degree == "engineering" and math_qudurat and english_qudurat:
-                gpa_on_4_point_scale = (gpa / 100) * 4
+            if degree == "engineering":
+                if not math_qudurat:
+                    return render_template('error.html', error_message="You need to input the Math Qudurat score for Engineering degree")
+                if not english_qudurat:
+                    return render_template('error.html', error_message="You need to input the English Qudurat score for Engineering degree")
                 final_score = gpa * 0.65 + math_qudurat * 0.2 + english_qudurat * 0.15
-            elif degree == "medicine" and math_qudurat and english_qudurat:
-                gpa_on_4_point_scale = (gpa / 100) * 4
+            elif degree == "medicine":
+                if not math_qudurat:
+                    return render_template('error.html', error_message="You need to input the Math Qudurat score for Medicine degree")
+                if not english_qudurat:
+                    return render_template('error.html', error_message="You need to input the English Qudurat score for Medicine degree")
                 final_score = gpa * 0.75 + math_qudurat * 0.15 + english_qudurat * 0.1
             else:
-                final_score = ((sum(grades) / len(grades)) + 1) * 20
-                gpa_on_4_point_scale = (gpa / 100) * 4
+                final_score = gpa
+            
+            gpa_on_4_point_scale = (gpa / 100) * 4
             
             if final_score > 100:
                 final_score = 100
