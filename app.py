@@ -67,8 +67,13 @@ def public_tool():
             else:
                 final_score = sum_grades
 
+            final_score = format_number(final_score)
+            sum_grades = format_number(sum_grades)
+
             sum_grades = 'Your final percentage is: ' +  str(round(sum_grades, 1)) + '%'
 
+            final_score = format_number(final_score)
+            
             return render_template('result.html', final_score=round(final_score, 1), gpa=sum_grades)
         except ValueError:
             return render_template('error.html', error_message="Invalid input. Please check your values and try again.")
