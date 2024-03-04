@@ -157,6 +157,11 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 768px) {
+
+    body {
+        height: 100vh;
+    }
+
     .boxed {
         width: 90%;
         padding: 20px;
