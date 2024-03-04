@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
 
 
 app = Flask(__name__, static_folder='static')
@@ -11,18 +12,43 @@ def format_number(num):
         return num
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///grades.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///default.db'
+
+app.config['SQLALCHEMY_BINDS'] = {
+    'public': 'sqlite:///public_grades.db',
+    'american': 'sqlite:///american_grades.db'
+}
+
 db = SQLAlchemy(app)
 
-class Grade(db.Model):
+class AmericanGrade(db.Model):
+    __bind_key__ = 'american'
     id = db.Column(db.Integer, primary_key=True)
     grade1 = db.Column(db.Float, nullable=False)
     grade2 = db.Column(db.Float, nullable=False)
     grade3 = db.Column(db.Float, nullable=False)
-    grade4 = db.Column(db.Float, nullable=True)  # Optional for private_tool
+    grade4 = db.Column(db.Float, nullable=True)
     math_qudurat = db.Column(db.Float, nullable=True)
     english_qudurat = db.Column(db.Float, nullable=True)
     degree = db.Column(db.String(50), nullable=True)
+    final_score = db.Column(db.Float, nullable=True)
+    gpa = db.Column(db.Float, nullable=True)
+    name = db.Column(db.String(100), nullable=False)
+
+
+class PublicGrade(db.Model):
+    __bind_key__ = 'public'
+    id = db.Column(db.Integer, primary_key=True)
+    grade1 = db.Column(db.Float, nullable=False)
+    grade2 = db.Column(db.Float, nullable=False)
+    grade3 = db.Column(db.Float, nullable=False)
+    math_qudurat = db.Column(db.Float, nullable=True)
+    english_qudurat = db.Column(db.Float, nullable=True)
+    degree = db.Column(db.String(50), nullable=True)
+    final_score = db.Column(db.Float, nullable=True)
+    gpa = db.Column(db.Float, nullable=True)
+    name = db.Column(db.String(100), nullable=False)
+
 
 
 @app.route('/')
@@ -47,6 +73,10 @@ def public_tool():
 
             weights = [0.1, 0.2, 0.7]
             sum_grades = sum(g*w for g, w in zip(grades, weights))
+
+            name = request.form.get('name')
+            if not name:
+                return render_template('error.html', error_message="Please enter your name.")
 
 
             math_qudurat = request.form.get('math_qudurat')
@@ -85,10 +115,25 @@ def public_tool():
 
             final_score = format_number(final_score)
             sum_grades = format_number(sum_grades)
-
+            gpa = sum_grades
             sum_grades = 'Your final percentage is: ' +  str(round(sum_grades, 1)) + '%'
 
             final_score = format_number(final_score)
+
+            public_grade = PublicGrade(
+                name=name,
+                grade1=grade1,
+                grade2=grade2,
+                grade3=grade3,
+                math_qudurat=math_qudurat,
+                english_qudurat=english_qudurat,
+                degree=degree,
+                final_score=final_score,
+                gpa=gpa
+            )
+
+            db.session.add(public_grade)
+            db.session.commit()
             
             return render_template('result.html', final_score=round(final_score, 1), gpa=sum_grades)
         except ValueError:
@@ -110,6 +155,11 @@ def private_tool():
                 return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 5.")
 
             gpa = (sum(grades) / len(grades) + 1) * 20
+
+            name = request.form.get('name')
+
+            if not name:
+                return render_template('error.html', error_message="Please enter your name.")
 
             math_qudurat = request.form.get('math_qudurat')
             if math_qudurat:
@@ -154,16 +204,19 @@ def private_tool():
 
             gpa = 'Your final high school GPA is: ' + str(round(gpa_on_4_point_scale, 2))
 
-            new_grade = Grade(
+            american_grade = AmericanGrade(
+                name=name,
                 grade1=grade1,
                 grade2=grade2,
                 grade3=grade3,
                 grade4=grade4,
                 math_qudurat=math_qudurat,
                 english_qudurat=english_qudurat,
-                degree=degree
+                degree=degree,
+                final_score=final_score,
+                gpa=gpa_on_4_point_scale
             )
-            db.session.add(new_grade)
+            db.session.add(american_grade)
             db.session.commit()
 
             return render_template('result.html', final_score=round(final_score, 1), gpa=gpa)
@@ -172,15 +225,19 @@ def private_tool():
 
     return render_template('private_tool.html')
 
-@app.route('/view_grades')
-def view_grades():
-    grades = Grade.query.all()
-    return render_template('view_grades.html', grades=grades)
+@app.route('/view_us_grades')
+def view_us_grades():
+    grades = AmericanGrade.query.all()
+    return render_template('view_us_grades.html', grades=grades)
+
+@app.route('/view_public_grades')
+def view_public_grades():
+    public_grades = PublicGrade.query.all()
+    return render_template('view_public_grades.html', public_grades=public_grades)
 
 
 with app.app_context():
     db.create_all()
-
 
 if __name__ == '__main__':
     app.run(debug=True)

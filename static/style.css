@@ -89,7 +89,7 @@ a:hover {
     font-size: 0.8em;
 }
 
-select, input[type="number"] {
+select, input[type="number"], input[type="text"] {
     display: block;
     margin: 0 auto;
     width: 20%;
@@ -161,11 +161,11 @@ select, input[type="number"] {
         padding: 20px; /* Adjust as needed */
     }
 
-    label, button, a, input[type="number"], .select2-container, select {
+    label, button, a, input[type="number"], input[type="text"], .select2-container, select {
         width: 60%;
     }
 
-    input[type="number"], select {
+    input[type="number"], input[type="text"], select {
         height: 40px; /* Adjust as needed */
         font-size: 16px; /* Adjust as needed */
     }
@@ -190,4 +190,35 @@ select, input[type="number"] {
     .select2-dropdown {
         font-size: 16px !important; /* Match the font size of other inputs */
     }
+}
+
+table {
+    width: 40%;
+    border-collapse: separate;  /* Changed from collapse to separate */
+    border-spacing: 0;  /* Added to keep borders single */
+    margin-bottom: 20px;
+    border-radius: 10px;  /* New property to round corners */
+    overflow: hidden;  /* New property to apply border-radius to all cells */
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #4f6fff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #383838;
+}
+
+tr:hover {
+    background-color: #818181;
 }
