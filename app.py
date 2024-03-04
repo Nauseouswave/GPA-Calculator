@@ -1,4 +1,6 @@
 from flask import Flask, request, render_template
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__, static_folder='static')
 
@@ -7,6 +9,20 @@ def format_number(num):
         return int(num)
     else:
         return num
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///grades.db'
+db = SQLAlchemy(app)
+
+class Grade(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    grade1 = db.Column(db.Float, nullable=False)
+    grade2 = db.Column(db.Float, nullable=False)
+    grade3 = db.Column(db.Float, nullable=False)
+    grade4 = db.Column(db.Float, nullable=True)  # Optional for private_tool
+    math_qudurat = db.Column(db.Float, nullable=True)
+    english_qudurat = db.Column(db.Float, nullable=True)
+    degree = db.Column(db.String(50), nullable=True)
 
 
 @app.route('/')
@@ -138,11 +154,33 @@ def private_tool():
 
             gpa = 'Your final high school GPA is: ' + str(round(gpa_on_4_point_scale, 2))
 
+            new_grade = Grade(
+                grade1=grade1,
+                grade2=grade2,
+                grade3=grade3,
+                grade4=grade4,
+                math_qudurat=math_qudurat,
+                english_qudurat=english_qudurat,
+                degree=degree
+            )
+            db.session.add(new_grade)
+            db.session.commit()
+
             return render_template('result.html', final_score=round(final_score, 1), gpa=gpa)
         except ValueError:
             return render_template('error.html', error_message="Invalid input. Please check your values and try again.")
 
     return render_template('private_tool.html')
+
+@app.route('/view_grades')
+def view_grades():
+    grades = Grade.query.all()
+    return render_template('view_grades.html', grades=grades)
+
+
+with app.app_context():
+    db.create_all()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

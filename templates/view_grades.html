@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Grades</title>
+</head>
+
+<body>
+    <h1>Stored Grades</h1>
+    <table>
+        <tr>
+            <th>Grade 1</th>
+            <th>Grade 2</th>
+            <th>Grade 3</th>
+            <th>Grade 4</th>
+            <th>Math Qudurat</th>
+            <th>English Qudurat</th>
+            <th>Degree</th>
+        </tr>
+        {% for grade in grades %}
+        <tr>
+            <td>{{ grade.grade1 }}</td>
+            <td>{{ grade.grade2 }}</td>
+            <td>{{ grade.grade3 }}</td>
+            <td>{{ grade.grade4 }}</td>
+            <td>{{ grade.math_qudurat }}</td>
+            <td>{{ grade.english_qudurat }}</td>
+            <td>{{ grade.degree }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
