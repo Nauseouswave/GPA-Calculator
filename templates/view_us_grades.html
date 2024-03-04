@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1197243616981062"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="static/style.css">
+    <title>View Grades</title>
+</head>
+
+<body>
+    <h1>Stored Grades</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Grade 9</th>
+            <th>Grade 10</th>
+            <th>Grade 11</th>
+            <th>Grade 12</th>
+            <th>Math Qudurat</th>
+            <th>English Qudurat</th>
+            <th>Degree</th>
+            <th>GPA</th>
+            <th>Percentage</th>
+        </tr>
+        {% for grade in grades %}
+        <tr>
+            <td>{{ grade.name }}</td>
+            <td>{{ grade.grade1 }}</td>
+            <td>{{ grade.grade2 }}</td>
+            <td>{{ grade.grade3 }}</td>
+            <td>{{ grade.grade4 }}</td>
+            <td>{{ grade.math_qudurat }}%</td>
+            <td>{{ grade.english_qudurat }}%</td>
+            <td>{{ grade.degree }}</td>
+            <td>{{ grade.gpa|round(2) }}</td>
+            <td>{{ grade.final_score|round(2) }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

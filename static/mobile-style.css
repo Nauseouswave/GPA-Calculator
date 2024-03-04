@@ -90,7 +90,8 @@ a:hover {
 }
 
 select,
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
     display: block;
     margin: 0 auto;
     width: 20%;
@@ -167,12 +168,14 @@ input[type="number"] {
     button,
     a,
     input[type="number"],
+    input[type="text"],
     .select2-container,
     select {
         width: 60%;
     }
 
     input[type="number"],
+    input[type="text"],
     select {
         height: 40px;
         font-size: 16px;
