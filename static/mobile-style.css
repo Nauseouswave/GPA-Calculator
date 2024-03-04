@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: auto;
+    height: 80%;
     background-color: #1a1a1a;
     font-family: Arial, sans-serif;
     color: #fff;
@@ -56,7 +56,7 @@ input[type="submit"] {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 
 input[type="submit"]:hover {
@@ -156,7 +156,7 @@ input[type="number"] {
     justify-content: center;
 }
 
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .boxed {
         width: 90%;
         padding: 20px;
@@ -198,4 +198,4 @@ input[type="number"] {
     .select2-dropdown {
         font-size: 16px !important;
     }
-} */
+}
