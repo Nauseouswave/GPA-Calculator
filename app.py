@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.pool import NullPool
 
 
 app = Flask(__name__, static_folder='static')
@@ -12,14 +15,18 @@ def format_number(num):
         return num
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///default.db'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_BINDS'] = {
     'public': 'sqlite:///public_grades.db',
     'american': 'sqlite:///american_grades.db'
 }
 
-db = SQLAlchemy(app)
+engine = create_engine(os.getenv('DATABASE_URL'), poolclass=NullPool)
+db = SQLAlchemy(app, engine=engine)
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()
 
 class AmericanGrade(db.Model):
     __bind_key__ = 'american'
