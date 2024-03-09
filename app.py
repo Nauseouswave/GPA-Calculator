@@ -65,19 +65,13 @@ def public_tool():
 
             grades = [grade1, grade2, grade3]
 
-            if not all(0 <= g <= 100 for g in grades):
-                return render_template('error.html', error_message="Invalid grades. Please enter values between 0 and 100.")
-
-            if len(grades) != 3:
-                return render_template('error.html', error_message="Please enter exactly three grades.")
-
             weights = [0.1, 0.2, 0.7]
             sum_grades = sum(g*w for g, w in zip(grades, weights))
 
             name = request.form.get('name')
-            if not name:
-                return render_template('error.html', error_message="Please enter your name.")
 
+            if not name:
+                name = "Anonymous"
 
             math_qudurat = request.form.get('math_qudurat')
             if math_qudurat:
@@ -159,8 +153,9 @@ def private_tool():
             name = request.form.get('name')
 
             if not name:
-                return render_template('error.html', error_message="Please enter your name.")
+                name = "Anonymous"
 
+            
             math_qudurat = request.form.get('math_qudurat')
             if math_qudurat:
                 math_qudurat = float(math_qudurat)
