@@ -19,37 +19,39 @@
 </head>
 
 <body>
-    <h1>Public Grades</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Grade 1</th>
-                <th>Grade 2</th>
-                <th>Grade 3</th>
-                <th>Math Qudurat</th>
-                <th>English Qudurat</th>
-                <th>Degree</th>
-                <th>Final Score</th>
-                <th>Percentage</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for public_grade in public_grades %}
-            <tr>
-                <td>{{ public_grade.name }}</td>
-                <td>{{ public_grade.grade1 }}%</td>
-                <td>{{ public_grade.grade2 }}%</td>
-                <td>{{ public_grade.grade3 }}%</td>
-                <td>{{ public_grade.math_qudurat }}%</td>
-                <td>{{ public_grade.english_qudurat }}%</td>
-                <td>{{ public_grade.degree }}</td>
-                <td>{{ public_grade.final_score }}%</td>
-                <td>{{ public_grade.gpa }}%</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-container">
+        <h1>Public Grades</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Grade 1</th>
+                    <th>Grade 2</th>
+                    <th>Grade 3</th>
+                    <th>Math Qudurat</th>
+                    <th>English Qudurat</th>
+                    <th>Degree</th>
+                    <th>Final Score</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for public_grade in public_grades %}
+                <tr>
+                    <td>{{ public_grade.name }}</td>
+                    <td>{{ public_grade.grade1 }}%</td>
+                    <td>{{ public_grade.grade2 }}%</td>
+                    <td>{{ public_grade.grade3 }}%</td>
+                    <td>{{ public_grade.math_qudurat }}%</td>
+                    <td>{{ public_grade.english_qudurat }}%</td>
+                    <td>{{ public_grade.degree }}</td>
+                    <td>{{ public_grade.final_score }}%</td>
+                    <td>{{ public_grade.gpa }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <script type="text/javascript"> var infolinks_pid = 3416196; var infolinks_wsid = 0; </script>
     <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
