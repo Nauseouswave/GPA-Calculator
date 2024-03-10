@@ -1,9 +1,6 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-import os
-from sqlalchemy import create_engine
-from sqlalchemy.pool import NullPool
 
 
 app = Flask(__name__, static_folder='static')
@@ -15,18 +12,14 @@ def format_number(num):
         return num
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///default.db'
+
 app.config['SQLALCHEMY_BINDS'] = {
     'public': 'sqlite:///public_grades.db',
     'american': 'sqlite:///american_grades.db'
 }
 
-engine = create_engine(os.getenv('DATABASE_URL'), poolclass=NullPool)
-db = SQLAlchemy(app, engine=engine)
-
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db.session.remove()
+db = SQLAlchemy(app)
 
 class AmericanGrade(db.Model):
     __bind_key__ = 'american'
@@ -162,18 +155,17 @@ def private_tool():
             if not name:
                 name = "Anonymous"
 
-            
             math_qudurat = request.form.get('math_qudurat')
-            if math_qudurat:
-                math_qudurat = float(math_qudurat)
-                if not 0 <= math_qudurat <= 100:
-                    return render_template('error.html', error_message="Invalid Math Qudurat score. Please enter a value between 0 and 100.")
+            math_qudurat = float(math_qudurat) if math_qudurat else None
+            if math_qudurat is not None and not 0 <= math_qudurat <= 100:
+                return render_template('error.html', error_message="Invalid Math Qudurat score. Please enter a value between 0 and 100.")
 
             english_qudurat = request.form.get('english_qudurat')
-            if english_qudurat:
-                english_qudurat = float(english_qudurat)
-                if not 0 <= english_qudurat <= 100:
-                    return render_template('error.html', error_message="Invalid English Qudurat score. Please enter a value between 0 and 100.")
+            english_qudurat = float(english_qudurat) if english_qudurat else None
+            if english_qudurat is not None and not 0 <= english_qudurat <= 100:
+                return render_template('error.html', error_message="Invalid English Qudurat score. Please enter a value between 0 and 100.")
+
+            # rest of your code...
 
             degree = request.form.get('degree')
 
